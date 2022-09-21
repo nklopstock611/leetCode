@@ -19,4 +19,26 @@
 # Input: s = "paper", t = "title"
 # Output: true
 
+class Solution:
 
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        h_s_t = {}
+        h_t_s = {}
+
+        for i in range(len(s)):
+            # se van asignando valores correspondientes.
+            if s[i] not in h_s_t and t[i] not in h_t_s:
+                h_s_t[s[i]] = t[i]
+                h_t_s[t[i]] = s[i]
+            # algo parecido a revisar si están en la misma posición.
+            elif h_s_t.get(s[i]) != t[i] or h_t_s.get(t[i]) != s[i]:
+                return False
+
+        return True
+
+
+# Main
+sol = Solution()
+s = "egg"
+t = "add"
+print(sol.isIsomorphic(s, t))
