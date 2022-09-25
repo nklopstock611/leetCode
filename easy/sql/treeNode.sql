@@ -33,6 +33,7 @@
 -- | 4  | Leaf  |
 -- | 5  | Leaf  |
 -- +----+-------+
+
 with root as (
   select tree.id, 'Root' as type
   from tree
@@ -42,12 +43,12 @@ with root as (
 inners as (
   select tree.id, 'Inner' as type
   from tree
-  where tree.id in (
+  where tree.id in ( -- el id del nodo está en la columna de padres (es decir, tiene hijos)
     SELECT p_id
     from tree
   )
   AND
-  tree.id not in (
+  tree.id not in ( -- no es raíz.
     select id
     from root
   )
@@ -56,10 +57,10 @@ inners as (
 leafs as (
   select tree.id, 'Leaf' as type
   from tree
-  where id not in (
+  where id not in ( -- no tiene hijos.
     select id
     from inners
-    where id not in (
+    where id not in ( -- no eso no es raíz.
       select id
       from root
   	)
