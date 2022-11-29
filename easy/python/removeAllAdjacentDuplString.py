@@ -22,7 +22,7 @@ while i < n and centinela:
             act = l[i]
             sig = l[i + 1]
             l.pop(i)
-            l.pop(i)
+            l.pop(i) # cuando quita el primero, el de después va a quedar en la posición del primero en el arreglo.
             i -= 2
 
     i += 1

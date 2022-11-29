@@ -1,3 +1,8 @@
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
 class Solution:
 
@@ -26,18 +31,43 @@ class Solution:
                 i += 1
             return l1
 
-    def addTwoNumbers(self, l1: list, l2: list) -> list:
+    def addTwoNumbersArray(self, a1, a2):
         sums = []
         saved = 0
-        if len(l1) == len(l2):
-            sums = self.calc(l1, l2, saved, sums)
+        if len(a1) == len(a2):
+            sums = self.calc(a1, a2, saved, sums)
         else:
-            l2 = self.fill(l1, l2)
-            sums = self.calc(l1, l2, saved, sums)
+            l2 = self.fill(a1, a2)
+            sums = self.calc(a1, a2, saved, sums)
 
         return sums
 
-sol = Solution()
-l1 = [2, 6, 3, 9]
-l2 = [5, 6, 4]
-print(sol.addTwoNumbers(l1, l2))
+    def printLinkedList(self, l, a):
+        #print(l.val)
+        a.append(l.val)
+        if l.next != None:
+            self.printLinkedList(l.next, a)
+        
+        return a
+
+    def addTwoNumbers(self, l1, l2):
+        a1 = []
+        a2 = []
+        self.printLinkedList(l1, a1)
+        self.printLinkedList(l2, a2)
+        l = self.addTwoNumbersArray(a1, a2)
+        print(a1)
+        print(a2)
+        node = None
+        for i in range(1, len(l)):
+            val = l[i - 1]
+            next = l[i]
+            node = ListNode(val, next)
+            print("NODE " + str(node.val))
+
+s = Solution()
+l1 = ListNode(1, ListNode(2, ListNode(3, None)))
+l2 = ListNode(1, ListNode(2, ListNode(3, None)))
+s.addTwoNumbers(l1, l2)
+
+            
