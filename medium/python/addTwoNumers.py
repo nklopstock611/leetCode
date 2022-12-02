@@ -69,5 +69,4 @@ s = Solution()
 l1 = ListNode(1, ListNode(2, ListNode(3, None)))
 l2 = ListNode(1, ListNode(2, ListNode(3, None)))
 s.addTwoNumbers(l1, l2)
-
-            
+         
